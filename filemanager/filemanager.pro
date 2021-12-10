@@ -34,7 +34,8 @@ SOURCES += \
     sidebaritemdelegate.cpp \
     filemanagerwindow.cpp \
     pluginmanager.cpp \
-    toolbar.cpp
+    toolbar.cpp \
+    crumbbar.cpp
 
 HEADERS += \
     sidebarview.h \
@@ -47,7 +48,8 @@ HEADERS += \
     interfaces/sidebariteminterface.h \
     interfaces/plugininterface.h \
     interfaces/sidebaritem.h \
-    toolbar.h
+    toolbar.h \
+    crumbbar.h
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
