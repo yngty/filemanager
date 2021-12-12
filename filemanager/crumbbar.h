@@ -10,6 +10,10 @@ public:
     explicit CrumbBar(QWidget *parent = nullptr);
     ~CrumbBar();
 
+    void updateCrumbs(const QUrl &url);
+public Q_SLOTS:
+    void updateCurrentUrl(const QUrl &url);
+
 private:
     QScopedPointer<CrumbBarPrivate> d_private;
     Q_DECLARE_PRIVATE(CrumbBar)

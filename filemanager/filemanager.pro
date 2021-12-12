@@ -35,7 +35,10 @@ SOURCES += \
     filemanagerwindow.cpp \
     pluginmanager.cpp \
     toolbar.cpp \
-    crumbbar.cpp
+    crumbbar.cpp \
+    crumblistviewmodel.cpp \
+    crumbinterface.cpp \
+    crumbmanager.cpp
 
 HEADERS += \
     sidebarview.h \
@@ -49,7 +52,10 @@ HEADERS += \
     interfaces/plugininterface.h \
     interfaces/sidebaritem.h \
     toolbar.h \
-    crumbbar.h
+    crumbbar.h \
+    crumblistviewmodel.h \
+    interfaces/crumbinterface.h \
+    crumbmanager.h
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

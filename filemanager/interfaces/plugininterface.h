@@ -2,6 +2,7 @@
 #define PLUGININTERFACE_H
 
 #include "sidebariteminterface.h"
+#include "crumbinterface.h"
 #include "sidebaritem.h"
 
 #include <QString>
@@ -9,6 +10,7 @@
 #include <functional>
 
 using SideBarInterfaceCreaterFunc = QPair<QString, std::function<SideBarItemInterface *()>>;
+using CrumbCreaterFunc = QPair<QString, std::function<CrumbInterface *()>>;
 
 class PluginInterface
 {
@@ -18,6 +20,8 @@ public:
     virtual SideBarItem *createSideBarItem() = 0;
 
     virtual SideBarInterfaceCreaterFunc createSideBarInterfaceTypeFunc() = 0;
+
+    virtual CrumbCreaterFunc createCrumbCreaterTypeFunc() = 0;
 
     virtual QString pluginName() = 0;
 };

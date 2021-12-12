@@ -16,6 +16,7 @@ public:
 public:
     virtual SideBarItem *createSideBarItem() override;
     virtual SideBarInterfaceCreaterFunc createSideBarInterfaceTypeFunc() override;
+    virtual CrumbCreaterFunc createCrumbCreaterTypeFunc() override;
     virtual QString pluginName() override;
 };
 

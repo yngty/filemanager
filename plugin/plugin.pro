@@ -32,10 +32,13 @@ SOURCES += \
     commonplugin.cpp \
     sidebardefaultitemhandler.cpp \
     ../filemanager/sidebaritem.cpp \
+    ../filemanager/crumbinterface.cpp\
+    commoncrumbcontroller.cpp
 
 HEADERS += \
     commonplugin.h \
-    sidebardefaultitemhandler.h
+    sidebardefaultitemhandler.h \
+    commoncrumbcontroller.h
 
 unix {
     target.path = /usr/lib

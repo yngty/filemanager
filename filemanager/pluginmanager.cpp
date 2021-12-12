@@ -18,7 +18,7 @@ PluginManager *PluginManager::instance()
 
 QString PluginManager::pluginDir()
 {
-    return QString("/home/yngty/build-filemanager-unknown-Debug/plugin");
+    return QString("/home/yngty/Workspace/uos/build-filemanager-unknown-Debug/plugin");
 }
 
 void PluginManager::loadPlugin()
