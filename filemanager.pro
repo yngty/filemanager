@@ -7,5 +7,7 @@ isEmpty(PREFIX){
 CONFIG += ordered
 
 SUBDIRS  += \
-    plugin/plugin.pro \
-    filemanager/filemanager.pro \
+    filemanager-lib \
+    plugin \
+    filemanager
+

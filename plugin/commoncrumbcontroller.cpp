@@ -6,6 +6,10 @@ CommonCrumbController::CommonCrumbController(QObject *parent)
 {
 }
 
+CommonCrumbController::~CommonCrumbController()
+{
+}
+
 bool CommonCrumbController::supportedUrl(QUrl url)
 {
     return ((url.scheme() == "plugin") && (url.host() == "phone"));

@@ -8,7 +8,7 @@ class CommonCrumbController : public CrumbInterface
 public:
     explicit CommonCrumbController(QObject *parent = nullptr);
 
-    ~CommonCrumbController() = default;
+    ~CommonCrumbController() override;
     virtual bool supportedUrl(QUrl url) override;
 
     virtual QList<CrumbData> seprateUrl(const QUrl &url) override;

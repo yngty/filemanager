@@ -2,7 +2,7 @@
 #include <QIcon>
 #include <QUrl>
 #include <QPair>
-#include "sidebardefaultitemhandler.h"
+#include "sidebarcommonitemhandler.h"
 #include "commoncrumbcontroller.h"
 
 CommonPlugin::CommonPlugin(QObject *parent)
@@ -14,8 +14,8 @@ SideBarItem *CommonPlugin::createSideBarItem()
 {
     SideBarItem *item = new SideBarItem(
             QIcon::fromTheme("user-home"),
-            "主目录",
-            QUrl::fromUserInput("/home/yngty"));
+            "测试目录",
+            QUrl::fromUserInput("common:///"));
 
     item->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled | Qt::ItemNeverHasChildren | Qt::ItemIsDropEnabled);
     item->setRegisteredHandler(pluginName());
@@ -24,7 +24,7 @@ SideBarItem *CommonPlugin::createSideBarItem()
 
 SideBarInterfaceCreaterFunc CommonPlugin::createSideBarInterfaceTypeFunc()
 {
-    return SideBarInterfaceCreaterFunc(typeid(SideBarDefaultItemHandler).name(), [=]() { return new SideBarDefaultItemHandler(); });
+    return SideBarInterfaceCreaterFunc(typeid(SideBarCommonItemHandler).name(), [=]() { return new SideBarCommonItemHandler(); });
 }
 
 QString CommonPlugin::pluginName()

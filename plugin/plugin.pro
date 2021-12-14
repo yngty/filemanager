@@ -13,6 +13,7 @@ TEMPLATE = lib
 CONFIG += c++11 link_pkgconfig plugin
 
 PKGCONFIG += dtkwidget dtkcore
+
 # The following define makes your compiler emit warnings if you use
 # any feature of Qt which has been marked as deprecated (the exact warnings
 # depend on your compiler). Please consult the documentation of the
@@ -30,15 +31,13 @@ DISTFILES += \
 
 SOURCES += \
     commonplugin.cpp \
-    sidebardefaultitemhandler.cpp \
-    ../filemanager/sidebaritem.cpp \
-    ../filemanager/crumbinterface.cpp\
-    commoncrumbcontroller.cpp
+    commoncrumbcontroller.cpp \
+    sidebarcommonitemhandler.cpp
 
 HEADERS += \
     commonplugin.h \
-    sidebardefaultitemhandler.h \
-    commoncrumbcontroller.h
+    commoncrumbcontroller.h \
+    sidebarcommonitemhandler.h
 
 unix {
     target.path = /usr/lib
@@ -46,3 +45,10 @@ unix {
 }
 
 INCLUDEPATH += ../filemanager
+
+LIBS += -L$$OUT_PWD/../filemanager-lib -lfilemanager-lib
+
+CONFIG(debug, debug|release) {
+    DEPENDPATH += $$PWD/../filemanager-lib
+    unix:QMAKE_RPATHDIR += $$OUT_PWD/../filemanager-lib
+}

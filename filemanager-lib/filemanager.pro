@@ -25,21 +25,42 @@ CONFIG += c++11 link_pkgconfig
 PKGCONFIG += dtkwidget dtkcore
 
 SOURCES += \
-        main.cpp
+        main.cpp \
+    sidebar.cpp \
+    sidebarview.cpp \
+    sidebaritem.cpp \
+    sidebarmanager.cpp \
+    sidebarmodel.cpp \
+    sidebaritemdelegate.cpp \
+    filemanagerwindow.cpp \
+    pluginmanager.cpp \
+    toolbar.cpp \
+    crumbbar.cpp \
+    crumblistviewmodel.cpp \
+    crumbinterface.cpp \
+    crumbmanager.cpp \
+    windowmanager.cpp \
+    sidebariteminterface.cpp
 
 HEADERS += \
-
+    sidebarview.h \
+    sidebarmanager.h \
+    sidebarmodel.h \
+    sidebaritemdelegate.h \
+    filemanagerwindow.h \
+    pluginmanager.h \
+    interfaces/sidebar.h \
+    interfaces/sidebariteminterface.h \
+    interfaces/plugininterface.h \
+    interfaces/sidebaritem.h \
+    toolbar.h \
+    crumbbar.h \
+    crumblistviewmodel.h \
+    interfaces/crumbinterface.h \
+    crumbmanager.h \
+    windowmanager.h
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
-
-INCLUDEPATH += ../filemanager-lib
-
-LIBS += -L$$OUT_PWD/../filemanager-lib -lfilemanager-lib
-
-CONFIG(debug, debug|release) {
-    DEPENDPATH += $$PWD/../filemanager-lib
-    unix:QMAKE_RPATHDIR += $$OUT_PWD/../filemanager-lib
-}

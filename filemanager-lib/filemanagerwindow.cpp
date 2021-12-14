@@ -45,6 +45,9 @@ FileManagerWindow::~FileManagerWindow()
 
 bool FileManagerWindow::cd(const QUrl &url)
 {
+    Q_D(FileManagerWindow);
+    d->toolbar->currentUrlChanged(url);
+    return true;
 }
 
 void FileManagerWindow::initUI()
