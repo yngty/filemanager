@@ -1,7 +1,9 @@
 #include "filemanagerwindow.h"
-#include "toolbar.h"
+#include "interfaces/baseview.h"
 #include "interfaces/sidebar.h"
+#include "toolbar.h"
 #include "pluginmanager.h"
+#include "viewmanager.h"
 
 #include <DTitlebar>
 #include <DToolBar>
@@ -9,6 +11,7 @@
 #include <QDebug>
 #include <QSplitter>
 #include <QVBoxLayout>
+#include <QStackedLayout>
 
 class FileManagerWindowPrivate
 {
@@ -17,15 +20,24 @@ public:
         : q_ptr(qq) {}
 
 private:
+    enum WindowEdge {
+        WINDOW_DEFAULT_WIDTH = 960,
+        WINDOW_DEFAULT_HEIGHT = 540,
+        WINDOW_MINIMUM_WIDTH = 760,
+        WINDOW_MINIMUM_HEIGHT = 420
+    };
+
     QFrame *centralWidget { nullptr };
     SideBar *sideBar { nullptr };
     QFrame *rightView { nullptr };
-
     QHBoxLayout *midLayout { nullptr };
     QSplitter *splitter { nullptr };
-
     ToolBar *toolbar { nullptr };
     QFrame *titleFrame { nullptr };
+
+    QVBoxLayout *rightViewLayout { nullptr };
+    QStackedLayout *viewStackLayout { nullptr };
+
     FileManagerWindow *q_ptr { nullptr };
     Q_DECLARE_PUBLIC(FileManagerWindow)
 };
@@ -47,6 +59,16 @@ bool FileManagerWindow::cd(const QUrl &url)
 {
     Q_D(FileManagerWindow);
     d->toolbar->currentUrlChanged(url);
+    BaseView *view = ViewManager::instance()->createViewByUrl(url);
+    if (view) {
+        d->viewStackLayout->addWidget(view->widget());
+        d->viewStackLayout->setCurrentWidget(view->widget());
+    }
+    return true;
+}
+
+bool FileManagerWindow::cdForTabByView(BaseView *view, const QUrl &url)
+{
     return true;
 }
 
@@ -54,8 +76,8 @@ void FileManagerWindow::initUI()
 {
     Q_D(FileManagerWindow);
     setWindowIcon(QIcon::fromTheme("dde-file-manager"));
-    resize(WINDOW_DEFAULT_WIDTH, WINDOW_DEFAULT_HEIGHT);
-    setMinimumSize(WINDOW_MINIMUM_WIDTH, WINDOW_MINIMUM_HEIGHT);
+    resize(FileManagerWindowPrivate::WINDOW_DEFAULT_WIDTH, FileManagerWindowPrivate::WINDOW_DEFAULT_HEIGHT);
+    setMinimumSize(FileManagerWindowPrivate::WINDOW_MINIMUM_WIDTH, FileManagerWindowPrivate::WINDOW_MINIMUM_HEIGHT);
     initTitleBar();
     initCentralWidget();
     setCentralWidget(d->centralWidget);
@@ -152,9 +174,25 @@ void FileManagerWindow::initLeftSideBar()
 void FileManagerWindow::initRightView()
 {
     Q_D(FileManagerWindow);
+
+    initViewLayout();
     d->rightView = new QFrame;
     QSizePolicy sp = d->rightView->sizePolicy();
 
     sp.setHorizontalStretch(1);
     d->rightView->setSizePolicy(sp);
+    d->rightViewLayout = new QVBoxLayout;
+    d->rightViewLayout->addLayout(d->viewStackLayout, 1);
+    d->rightViewLayout->setSpacing(0);
+    d->rightViewLayout->setContentsMargins(0, 0, 0, 0);
+    d->rightView->setLayout(d->rightViewLayout);
+}
+
+void FileManagerWindow::initViewLayout()
+{
+    Q_D(FileManagerWindow);
+
+    d->viewStackLayout = new QStackedLayout;
+    d->viewStackLayout->setSpacing(0);
+    d->viewStackLayout->setContentsMargins(0, 0, 0, 0);
 }

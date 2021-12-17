@@ -16,7 +16,7 @@ public Q_SLOTS:
 
 private:
     QScopedPointer<CrumbBarPrivate> d_private;
-    Q_DECLARE_PRIVATE(CrumbBar)
+    Q_DECLARE_PRIVATE_D(d_private, CrumbBar)
 };
 
 #endif   // CRUMBBAR_H

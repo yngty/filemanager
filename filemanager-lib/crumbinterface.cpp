@@ -1,4 +1,5 @@
 #include "interfaces/crumbinterface.h"
+#include "crumbbar.h"
 
 CrumbData::CrumbData(QUrl url, QString displayText, QString iconName, QString iconKey)
     : url(url), iconName(iconName), displayText(displayText), iconKey(iconKey)
@@ -31,6 +32,11 @@ CrumbInterface::CrumbInterface(QObject *parent)
 
 CrumbInterface::~CrumbInterface()
 {
+}
+
+void CrumbInterface::crumbUrlChangedBehavior(const QUrl url)
+{
+    crumbBar()->updateCrumbs(url);
 }
 
 CrumbBar *CrumbInterface::crumbBar()

@@ -2,29 +2,28 @@
 #define MAINWINDOW_H
 
 #include <DMainWindow>
-
+#include <QUrl>
 DWIDGET_USE_NAMESPACE
 
+class BaseView;
 class FileManagerWindowPrivate;
 class FileManagerWindow : public DMainWindow
 {
     Q_OBJECT
-
 public:
     FileManagerWindow(QWidget *parent = nullptr);
     virtual ~FileManagerWindow() override;
-    bool cd(const QUrl &url);
+
 signals:
     void currentUrlChanged();
+    void currentViewStateChanged();
+    void selectUrlChanged(const QList<QUrl> &urlList);
+
+public slots:
+    bool cd(const QUrl &url);
+    bool cdForTabByView(BaseView *view, const QUrl &url);
 
 private:
-    enum WindowEdge {
-        WINDOW_DEFAULT_WIDTH = 960,
-        WINDOW_DEFAULT_HEIGHT = 540,
-        WINDOW_MINIMUM_WIDTH = 760,
-        WINDOW_MINIMUM_HEIGHT = 420
-    };
-
     void initUI();
     void initTitleFrame();
     void initTitleBar();
@@ -34,6 +33,7 @@ private:
     void initSplitter();
     void initLeftSideBar();
     void initRightView();
+    void initViewLayout();
 
     QScopedPointer<FileManagerWindowPrivate> d_private;
     Q_DECLARE_PRIVATE_D(d_private, FileManagerWindow)

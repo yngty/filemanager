@@ -4,6 +4,7 @@
 #include "sidebariteminterface.h"
 #include "crumbinterface.h"
 #include "sidebaritem.h"
+#include "baseview.h"
 
 #include <QString>
 #include <QPair>
@@ -11,6 +12,7 @@
 
 using SideBarInterfaceCreaterFunc = QPair<QString, std::function<SideBarItemInterface *()>>;
 using CrumbCreaterFunc = QPair<QString, std::function<CrumbInterface *()>>;
+using ViewCreatorFunc = QPair<QString, std::function<BaseView *()>>;
 
 class PluginInterface
 {
@@ -18,6 +20,8 @@ public:
     virtual ~PluginInterface() = default;
 
     virtual SideBarItem *createSideBarItem() = 0;
+
+    virtual ViewCreatorFunc createViewTypeFunc() = 0;
 
     virtual SideBarInterfaceCreaterFunc createSideBarInterfaceTypeFunc() = 0;
 

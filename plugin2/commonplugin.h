@@ -8,7 +8,7 @@
 class CommonPlugin : public QObject, public PluginInterface
 {
     Q_OBJECT
-    Q_PLUGIN_METADATA(IID "com.deepin.filemanager.PluginInterface_iid" FILE "plugin.json")
+    Q_PLUGIN_METADATA(IID "com.deepin.filemanager.PluginInterface_iid" FILE "plugin2.json")
     Q_INTERFACES(PluginInterface)
 public:
     explicit CommonPlugin(QObject *parent = nullptr);

@@ -41,7 +41,9 @@ SOURCES += \
     crumbinterface.cpp \
     crumbmanager.cpp \
     windowmanager.cpp \
-    sidebariteminterface.cpp
+    sidebariteminterface.cpp \
+    viewmanager.cpp \
+    interfaces/baseview.cpp
 
 HEADERS += \
     sidebarview.h \
@@ -59,7 +61,9 @@ HEADERS += \
     crumblistviewmodel.h \
     interfaces/crumbinterface.h \
     crumbmanager.h \
-    windowmanager.h
+    windowmanager.h \
+    viewmanager.h \
+    interfaces/baseview.h
 
 
 unix {

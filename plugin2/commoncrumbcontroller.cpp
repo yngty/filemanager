@@ -12,7 +12,7 @@ CommonCrumbController::~CommonCrumbController()
 
 bool CommonCrumbController::supportedUrl(QUrl url)
 {
-    return ((url.scheme() == "common") || (url.host() == "common"));
+    return ((url.scheme() == "plugin2") || (url.host() == "plugin2"));
 }
 
 QList<CrumbData> CommonCrumbController::seprateUrl(const QUrl &url)
@@ -21,8 +21,8 @@ QList<CrumbData> CommonCrumbController::seprateUrl(const QUrl &url)
 
     QList<CrumbData> list;
 
-    QString text = tr("My Phone");
-    QString iconName = "phone-android";
+    QString text = tr("My Plugin2");
+    QString iconName = "document-open-recent";
     list.append(CrumbData(fromFile("/"), text, iconName));
 
     QStringList urllist;
@@ -62,7 +62,7 @@ QList<CrumbData> CommonCrumbController::seprateUrl(const QUrl &url)
 QUrl CommonCrumbController::fromFile(const QString &filePath)
 {
     QUrl url;
-    url.setScheme("common");
+    url.setScheme("plugin2");
     url.setHost("phone");
     url.setPath(filePath);
 

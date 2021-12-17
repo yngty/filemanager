@@ -35,7 +35,7 @@ public:
     };
 
     virtual void processAction(ActionType type) = 0;
-    virtual void crumbUrlChangedBehavior(const QUrl url) = 0;
+    virtual void crumbUrlChangedBehavior(const QUrl url);
     virtual CrumbBar *crumbBar() final;
     virtual void setCrumbBar(CrumbBar *crumbBar) final;
     virtual bool supportedUrl(QUrl) = 0;

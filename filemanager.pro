@@ -9,5 +9,6 @@ CONFIG += ordered
 SUBDIRS  += \
     filemanager-lib \
     plugin \
+    plugin2 \
     filemanager
 

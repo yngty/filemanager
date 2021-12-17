@@ -18,6 +18,7 @@ public:
 
 private:
     void initUI();
+    void initConnections();
     void clearCrumbs();
     void updateController(const QUrl &url);
 
@@ -119,6 +120,16 @@ void CrumbBarPrivate::initUI()
     q->setLayout(crumbBarLayout);
 }
 
+void CrumbBarPrivate::initConnections()
+{
+    Q_Q(CrumbBar);
+    QObject::connect(&crumbListView, &QListView::clicked, q, [q](const QModelIndex &index) {
+        if (index.isValid()) {
+            //            emit q->crumbListItemSelected(DUrl(index.data(DFMCrumbListviewModel::FileUrlRole).toUrl()));
+        }
+    });
+}
+
 void CrumbBarPrivate::clearCrumbs()
 {
     leftArrow.hide();
@@ -193,7 +204,10 @@ void CrumbBar::updateCrumbs(const QUrl &url)
 
 void CrumbBar::updateCurrentUrl(const QUrl &url)
 {
-    //    Q_D(CrumbBar);
-    d_private->updateController(url);
-    //    d->updateController(url);
+    Q_D(CrumbBar);
+    d->updateController(url);
+
+    if (d->crumbController) {
+        d->crumbController->crumbUrlChangedBehavior(url);
+    }
 }

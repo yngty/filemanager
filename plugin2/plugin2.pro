@@ -6,7 +6,7 @@
 
 QT       += core gui widgets
 
-TARGET = commonPlugin
+TARGET = plugin2
 
 TEMPLATE = lib
 
@@ -26,20 +26,20 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 DISTFILES += \
-    plugin.json
+    plugin2.json
 
 
 SOURCES += \
     commonplugin.cpp \
     commoncrumbcontroller.cpp \
     sidebarcommonitemhandler.cpp \
-    commonview.cpp
+    plugin2view.cpp
 
 HEADERS += \
     commonplugin.h \
     commoncrumbcontroller.h \
     sidebarcommonitemhandler.h \
-    commonview.h
+    plugin2view.h
 
 unix {
     target.path = /usr/lib

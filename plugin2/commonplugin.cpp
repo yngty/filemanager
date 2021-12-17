@@ -4,7 +4,7 @@
 #include <QPair>
 #include "sidebarcommonitemhandler.h"
 #include "commoncrumbcontroller.h"
-#include "commonview.h"
+#include "plugin2view.h"
 
 CommonPlugin::CommonPlugin(QObject *parent)
     : QObject(parent)
@@ -19,9 +19,9 @@ ViewCreatorFunc CommonPlugin::createViewTypeFunc()
 SideBarItem *CommonPlugin::createSideBarItem()
 {
     SideBarItem *item = new SideBarItem(
-            QIcon::fromTheme("user-home"),
-            "插件1",
-            QUrl::fromUserInput("plugin1:///"));
+            QIcon::fromTheme("user-desktop"),
+            "插件2",
+            QUrl::fromUserInput("plugin2:///"));
 
     item->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled | Qt::ItemNeverHasChildren | Qt::ItemIsDropEnabled);
     item->setRegisteredHandler(pluginName());
@@ -35,7 +35,7 @@ SideBarInterfaceCreaterFunc CommonPlugin::createSideBarInterfaceTypeFunc()
 
 QString CommonPlugin::pluginName()
 {
-    return "plugin1";
+    return "plugin2";
 }
 
 CrumbCreaterFunc CommonPlugin::createCrumbCreaterTypeFunc()
